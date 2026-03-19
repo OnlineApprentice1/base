@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "sites": [
+    {
+      "slug": "daves-engines",
+      "name": "Dave's Engines",
+      "trade": "Engine repair & rebuilding",
+      "location": "Hamilton, Ontario",
+      "archetype": "Industrial & Bold",
+      "heroStyle": "gradient-text",
+      "signatureMoves": ["angled-section-dividers", "oversized-typography-watermarks"],
+      "palette": {
+        "primary": "oklch(0.62 0.19 55)",
+        "accent": "oklch(0.75 0.18 70)",
+        "secondary": "oklch(0.45 0.03 250)",
+        "neutral": "oklch(0.25 0.02 250)"
+      },
+      "headingFont": "Rajdhani",
+      "bodyFont": "IBM Plex Sans",
+      "pages": ["home", "about", "services", "contact", "faq", "privacy", "terms"],
+      "github": "https://github.com/OnlineApprentice1/daves-engines",
+      "builtDate": "2026-03-19",
+      "designCommit": "70cc36a",
+      "deployCommit": "220e558"
+    }
+  ]
+}
