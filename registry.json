@@ -2,26 +2,102 @@
   "version": 1,
   "sites": [
     {
-      "slug": "daves-engines",
-      "name": "Dave's Engines",
-      "trade": "Engine repair & rebuilding",
-      "location": "Hamilton, Ontario",
-      "archetype": "Industrial & Bold",
-      "heroStyle": "gradient-text",
-      "signatureMoves": ["angled-section-dividers", "oversized-typography-watermarks"],
+      "slug": "blackwater-marine",
+      "business": "Blackwater Marine Construction",
+      "trade": "Boat dock & marine construction",
+      "location": "Kenora, Ontario",
+      "archetype": "nautical-depth-chart",
       "palette": {
-        "primary": "oklch(0.62 0.19 55)",
-        "accent": "oklch(0.75 0.18 70)",
-        "secondary": "oklch(0.45 0.03 250)",
-        "neutral": "oklch(0.25 0.02 250)"
+        "primary": "oklch(45% 0.12 230)",
+        "secondary": "oklch(65% 0.12 70)",
+        "accent": "oklch(50% 0.08 185)",
+        "neutral": "oklch(15% 0.04 250)"
       },
-      "headingFont": "Rajdhani",
-      "bodyFont": "IBM Plex Sans",
-      "pages": ["home", "about", "services", "contact", "faq", "privacy", "terms"],
-      "github": "https://github.com/OnlineApprentice1/daves-engines",
-      "builtDate": "2026-03-19",
-      "designCommit": "70cc36a",
-      "deployCommit": "220e558"
+      "hero": "horizon-line-split-text",
+      "signatureMoves": [
+        "scroll-driven depth transition (sky to deep navy)",
+        "split-text hero straddling horizon with clip-path",
+        "sonar ping service circles",
+        "floating compass navigation",
+        "depth gauge process section with sticky indicator",
+        "instrument panel gauge stats",
+        "weathered paper testimonial cards with torn edges"
+      ],
+      "fonts": {
+        "heading": "Young Serif",
+        "body": "Figtree"
+      },
+      "repo": "OnlineApprentice1/blackwater-marine",
+      "date": "2026-03-23",
+      "status": "built"
+    },
+    {
+      "slug": "forge-iron-metalworks",
+      "business": "Forge & Iron Metalworks",
+      "trade": "Custom metal fabrication & ornamental ironwork",
+      "location": "Smiths Falls, Ontario",
+      "archetype": "dark-industrial-forge",
+      "palette": {
+        "primary": "oklch(70% 0.18 55)",
+        "secondary": "oklch(50% 0.04 55)",
+        "accent": "oklch(85% 0.10 80)",
+        "neutral": "oklch(10% 0.005 250)"
+      },
+      "hero": "anvil-strike-staggered-entrance",
+      "signatureMoves": [
+        "custom welding crosshair cursor with spring-dampened following",
+        "side rail navigation with diamond dot indicators",
+        "horizontal drag-to-scroll services forge carousel",
+        "vertical text (writing-mode: vertical-rl) process timeline",
+        "ember glow countup stats with pulsing text-shadow",
+        "iron stamp testimonial cards with anvil verification badge",
+        "steel texture + grain overlays on dark backgrounds",
+        "jagged and wave dividers between sections"
+      ],
+      "fonts": {
+        "heading": "Oswald",
+        "body": "Outfit"
+      },
+      "repo": "OnlineApprentice1/forge-iron-metalworks",
+      "date": "2026-03-23",
+      "status": "built"
+    },
+    {
+      "slug": "frost-mechanical",
+      "business": "Frost Mechanical",
+      "trade": "HVAC — heating, cooling, ventilation",
+      "location": "Orillia, Ontario",
+      "archetype": "thermal-glass",
+      "palette": {
+        "primary": "oklch(60% 0.14 230)",
+        "secondary": "oklch(65% 0.15 30)",
+        "accent": "oklch(70% 0.08 180)",
+        "neutral": "oklch(12% 0.02 240)"
+      },
+      "hero": "temperature-split-frosted-glass",
+      "signatureMoves": [
+        "full-page scroll-snap (y mandatory) with 7 viewport sections",
+        "glassmorphism panels as core visual language (backdrop-blur + semi-transparent)",
+        "temperature bar navigation with scroll-progress indicator dot",
+        "animated SVG thermometer with pulsing mercury (hero)",
+        "animated SVG house airflow diagram with stroke-draw paths (process)",
+        "animated SVG HVAC schematic with draw-on paths (about preview)",
+        "bento/masonry grid services with reveal-on-hover cards",
+        "SVG circular progress rings that fill on scroll (stats)",
+        "cursor-following warm radial gradient glow",
+        "frost crystallization border animation on testimonial cards",
+        "grain/noise texture overlay",
+        "page transitions via template.tsx",
+        "frost crystal section dividers",
+        "breathing scale animation on CTA glass panel"
+      ],
+      "fonts": {
+        "heading": "Plus Jakarta Sans",
+        "body": "Inter Tight"
+      },
+      "repo": "OnlineApprentice1/frost-mechanical",
+      "date": "2026-03-23",
+      "status": "built"
     }
   ]
 }

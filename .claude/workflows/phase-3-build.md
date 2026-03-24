@@ -35,11 +35,12 @@ Build all pages with real content, configure GEO elements, and polish the site t
 - Use Framer Motion stagger for service card reveals
 
 ### Contact Page (`app/contact/page.tsx`)
-- Contact form (name, email, phone, message)
+- Contact form (name, email, phone, message) — uses Resend API route at `app/api/contact/route.ts`
 - Phone number prominent (matches primary CTA)
 - Email address
 - Service area / location info
-- Map embed placeholder or service area description
+- **Google Maps embed** — use the business address from `config/site.ts` coordinates (lat/lng) to embed a Google Maps iframe. If no coordinates, use a service area description instead.
+- Link to **Google Business Profile** if URL provided in brief
 - Business hours (if provided, otherwise omit)
 
 ### FAQ Page (`app/faq/page.tsx`) — if applicable
@@ -47,15 +48,70 @@ Build all pages with real content, configure GEO elements, and polish the site t
 - Accordion pattern with Framer Motion expand/collapse
 - FAQPage JSON-LD schema (in this file, not root layout)
 
+### Privacy Policy Page (`app/privacy/page.tsx`)
+- Already exists in template — update with actual business name and contact info
+- Include PIPEDA compliance language (Canadian privacy law)
+- Mention cookie usage, analytics data collection, contact form data handling
+- Link to it from the footer
+
+### Terms of Service Page (`app/terms/page.tsx`) — if it doesn't exist, create it
+- Basic terms for a service business website
+- Include disclaimer about pricing estimates, service availability
+- Link to it from the footer alongside privacy policy
+
+## Open Graph Images
+
+Every page should generate a dynamic OG image using Next.js route conventions.
+
+Create `app/opengraph-image.tsx` (and per-route variants) using Next.js `ImageResponse`:
+```tsx
+import { ImageResponse } from 'next/og';
+
+export const runtime = 'edge';
+export const alt = 'Business Name — Tagline';
+export const size = { width: 1200, height: 630 };
+export const contentType = 'image/png';
+
+export default async function Image() {
+  return new ImageResponse(
+    (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#PRIMARY_COLOR',
+        color: '#fff',
+        fontSize: 60,
+        fontWeight: 700,
+      }}>
+        <div>Business Name</div>
+        <div style={{ fontSize: 30, marginTop: 20, opacity: 0.8 }}>Tagline or page title</div>
+      </div>
+    ),
+    { ...size }
+  );
+}
+```
+
+- Style it to match the site's archetype and colour palette
+- Include the business name and a page-specific tagline
+- Use the site's primary colour as background
+- Create route-level variants for key pages (services, about, contact) if they need different messaging
+
 ## Content Guidelines
 
-- Write copy as if a skilled human copywriter wrote it — no AI filler phrases
-- No "Welcome to [business]" — start with value or a hook
-- No "In today's fast-paced world" or "When it comes to" — ban all AI cliches
+**Follow `.claude/workflows/copywriting.md` for all copy.** Key rules:
+- Canadian English (colour, centre, metre, neighbour)
+- No AI-sounding phrases (see banned phrases list in copywriting.md)
+- Start with value or a hook, never "Welcome to [business]"
 - Use the differentiator as the core messaging thread throughout
-- CTAs should be specific: "Get a Free Roofing Estimate" not "Contact Us"
+- CTAs must be specific to the trade: "Get a Free Roofing Estimate" not "Contact Us"
 - Short paragraphs (2-3 sentences max)
 - Use the business's 3 vibe words to guide tone
+- Claude generates all copy — write it like a skilled human copywriter would
 
 ## GEO Configuration
 
@@ -100,12 +156,23 @@ Before completing Phase 3:
 - Are there at least 2 things that make this site visually distinct from the last build?
 - Is there visual rhythm — variation in section density, color, and layout?
 
+## Performance Check
+
+Before completing Phase 3, reference the `performance` and `core-web-vitals` skills:
+- Use Next.js `<Image>` component for all images (lazy loading, proper sizing)
+- No render-blocking resources
+- Minimize client-side JavaScript — prefer server components where possible
+- Framer Motion: use `lazy` variants and `viewport={{ once: true }}` to avoid re-triggering
+- Target Lighthouse scores: 90+ Performance, 90+ Accessibility, 90+ Best Practices, 90+ SEO
+
 ## Gate
 - All pages render without console errors
 - Every page has unique meta title and description
 - JSON-LD schemas are valid
+- Google Maps embed or service area map on contact page
 - Responsive at all 5 breakpoints
-- Content feels human-written, not AI-generated
+- Content is Canadian English, feels human-written, not AI-generated
+- No banned AI phrases present in any copy
 
 ## Commit
 ```bash

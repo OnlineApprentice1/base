@@ -7,11 +7,16 @@ Create the responsive layout structure — header, footer, hero, and section she
 - Phase 1 complete (scaffolded project, passing dev server)
 - Vibe brief confirmed
 
-## Before Writing Any Code
+## Build Order (Components First, Theme Last)
 
-1. **Invoke the `frontend-design` skill.** This is mandatory.
+1. **Invoke Phase 2 skills** — `frontend-design`, `tailwind-design-system`, `daisyui`, `framer-motion-animator`, `responsive-design`, `color-palette`, `tailwind-theme-builder`.
 2. **Read `../../registry.json`** and `.claude/workflows/differentiation.md`.
-3. **Choose design direction** based on the brief + differentiation constraints.
+3. **Make design decisions** — archetype, palette direction, fonts, hero style, signature moves. Decisions only, no code yet.
+4. **Build components first** — Header, Footer, motion utilities, all section components. Focus on layout, structure, and interactions. Use Tailwind utilities directly.
+5. **Build the homepage** — compose sections into the full page.
+6. **Write globals.css / DaisyUI theme LAST** — create the custom theme to unify what was built. The theme serves the components, not the other way around. If a component doesn't fit the theme, adjust the theme.
+
+This prevents the theme from constraining component design. Components come first, theming polishes.
 
 ## Design Decisions to Make
 

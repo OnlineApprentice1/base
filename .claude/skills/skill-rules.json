@@ -1,0 +1,258 @@
+{
+    "version": "1.0",
+    "description": "Skill activation triggers for the website assembly line. Controls when skills auto-suggest based on user prompts.",
+    "skills": {
+        "frontend-design": {
+            "type": "guardrail",
+            "enforcement": "block",
+            "priority": "critical",
+            "description": "Core design quality skill — MUST be invoked before any website code is written",
+            "promptTriggers": {
+                "keywords": [
+                    "build a site",
+                    "new site",
+                    "new project",
+                    "start a build",
+                    "run the pipeline",
+                    "design",
+                    "layout",
+                    "hero section",
+                    "header",
+                    "footer",
+                    "homepage"
+                ],
+                "intentPatterns": [
+                    "(build|create|make|start).*?(site|website|project|page)",
+                    "(design|layout|style).*?(page|section|component)",
+                    "phase (2|3|two|three)"
+                ]
+            },
+            "skillFiles": [
+                "~/.claude/plugins/frontend-design"
+            ]
+        },
+        "tailwind-design-system": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "Tailwind v4 design system patterns — @theme blocks, OKLCH colours, semantic tokens, CVA components",
+            "promptTriggers": {
+                "keywords": [
+                    "tailwind",
+                    "theme",
+                    "design system",
+                    "colour palette",
+                    "color palette",
+                    "css variables",
+                    "design tokens"
+                ],
+                "intentPatterns": [
+                    "(build|create|set up).*?(theme|design system|palette)",
+                    "(style|tailwind|css).*?(component|layout|page)"
+                ]
+            },
+            "skillFiles": [
+                "~/.agents/skills/tailwind-design-system/SKILL.md"
+            ]
+        },
+        "daisyui": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "DaisyUI component patterns — custom themes, semantic classes, responsive modifiers",
+            "promptTriggers": {
+                "keywords": [
+                    "daisyui",
+                    "daisy",
+                    "btn-primary",
+                    "card component",
+                    "navbar",
+                    "custom theme",
+                    "data-theme"
+                ],
+                "intentPatterns": [
+                    "(build|create|use).*?(component|button|card|modal|navbar)",
+                    "(theme|theming).*?(daisyui|component)"
+                ]
+            },
+            "skillFiles": [
+                "~/.agents/skills/daisyui/SKILL.md"
+            ]
+        },
+        "framer-motion-animator": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "Framer Motion patterns — stagger, scroll-reveal, parallax, spring physics, reduced motion",
+            "promptTriggers": {
+                "keywords": [
+                    "animation",
+                    "animate",
+                    "framer",
+                    "motion",
+                    "scroll reveal",
+                    "parallax",
+                    "stagger",
+                    "entrance animation",
+                    "hover effect"
+                ],
+                "intentPatterns": [
+                    "(add|create|build).*?(animation|motion|transition|effect)",
+                    "(animate|reveal|stagger).*?(section|card|element|component)"
+                ]
+            },
+            "skillFiles": [
+                "~/.agents/skills/framer-motion-animator/SKILL.md"
+            ]
+        },
+        "responsive-design": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "Responsive patterns — mobile-first, clamp(), container queries, fluid typography",
+            "promptTriggers": {
+                "keywords": [
+                    "responsive",
+                    "mobile",
+                    "breakpoint",
+                    "viewport",
+                    "tablet",
+                    "desktop",
+                    "mobile-first"
+                ],
+                "intentPatterns": [
+                    "(make|ensure|check).*?(responsive|mobile|viewport)",
+                    "(layout|design).*?(mobile|tablet|desktop|screen)"
+                ]
+            },
+            "skillFiles": [
+                "~/.agents/skills/responsive-design/SKILL.md"
+            ]
+        },
+        "color-palette": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "medium",
+            "description": "Colour palette generation — 11-shade scale, WCAG contrast, semantic tokens",
+            "promptTriggers": {
+                "keywords": [
+                    "colour",
+                    "color",
+                    "palette",
+                    "brand colour",
+                    "contrast",
+                    "wcag",
+                    "shade"
+                ],
+                "intentPatterns": [
+                    "(generate|create|pick|choose).*?(colour|color|palette)",
+                    "(check|verify).*?(contrast|accessibility|wcag)"
+                ]
+            },
+            "skillFiles": [
+                "~/.agents/skills/color-palette/SKILL.md"
+            ]
+        },
+        "web-accessibility": {
+            "type": "guardrail",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "Accessibility compliance — ARIA, contrast, keyboard nav, focus indicators, semantic HTML",
+            "promptTriggers": {
+                "keywords": [
+                    "accessibility",
+                    "a11y",
+                    "aria",
+                    "screen reader",
+                    "keyboard navigation",
+                    "focus",
+                    "contrast",
+                    "wcag"
+                ],
+                "intentPatterns": [
+                    "(check|audit|fix|improve).*?(accessibility|a11y|aria)",
+                    "(add|implement).*?(aria|focus|keyboard|alt text)"
+                ]
+            },
+            "skillFiles": [
+                "~/.agents/skills/web-accessibility/SKILL.md"
+            ]
+        },
+        "seo-local-business": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "Local business SEO — LocalBusiness JSON-LD, meta tags, OG tags, sitemap, robots.txt",
+            "promptTriggers": {
+                "keywords": [
+                    "seo",
+                    "json-ld",
+                    "schema",
+                    "meta tags",
+                    "sitemap",
+                    "robots",
+                    "local business",
+                    "geo",
+                    "open graph"
+                ],
+                "intentPatterns": [
+                    "(add|configure|set up).*?(seo|schema|json-ld|meta|sitemap)",
+                    "(local|business).*?(seo|schema|search)"
+                ]
+            },
+            "skillFiles": [
+                "~/.agents/skills/seo-local-business/SKILL.md"
+            ]
+        },
+        "performance": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "Web performance — Lighthouse, lazy loading, code splitting, image optimization",
+            "promptTriggers": {
+                "keywords": [
+                    "performance",
+                    "lighthouse",
+                    "page speed",
+                    "lazy load",
+                    "optimize",
+                    "bundle size",
+                    "core web vitals"
+                ],
+                "intentPatterns": [
+                    "(improve|optimize|check|audit).*?(performance|speed|lighthouse)",
+                    "(reduce|minimize).*?(bundle|load time|render)"
+                ]
+            },
+            "skillFiles": [
+                "~/.agents/skills/performance/SKILL.md",
+                "~/.agents/skills/core-web-vitals/SKILL.md"
+            ]
+        },
+        "nextjs-patterns": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "medium",
+            "description": "Next.js App Router patterns and best practices",
+            "promptTriggers": {
+                "keywords": [
+                    "next.js",
+                    "nextjs",
+                    "app router",
+                    "server component",
+                    "client component",
+                    "metadata",
+                    "generateStaticParams"
+                ],
+                "intentPatterns": [
+                    "(create|build|set up).*?(next|nextjs|page|route|layout)",
+                    "(how to|best practice).*?(next|nextjs|app router)"
+                ]
+            },
+            "skillFiles": [
+                "~/.agents/skills/nextjs-app-router-patterns/SKILL.md",
+                "~/.agents/skills/nextjs-best-practices/SKILL.md"
+            ]
+        }
+    }
+}
