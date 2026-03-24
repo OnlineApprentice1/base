@@ -9,12 +9,10 @@ INTAKE → SCAFFOLD → DESIGN SYSTEM → PLAN → STRUCTURE → HOMEPAGE → IN
   0         1            2            3        4           5           6              7           8      9
 ```
 
-- **Conveyor Belt:** `.agents/skills/site-builder/SKILL.md` — orchestrates the line
-- **Station Agents (planned):** `.claude/agents/_future/<station>/agent.md` — aspirational per-station agents (not yet operational)
+- **Conveyor Belt:** `.agents/skills/site-builder/SKILL.md` — orchestrates the line (all phase details live here)
 - **Skill Packs:** `.claude/workflows/skill-packs/` — condensed knowledge injected into subagent prompts
 - **Workflows:** `.claude/workflows/` — shared rules (copywriting, differentiation, section orders, animation library)
 - **Registry:** `registry.json` — tracks every site built for differentiation
-- **Superpowers:** Plugin providing plan-driven methodology, subagent dispatch, two-stage review
 
 ## Phases
 
@@ -31,9 +29,7 @@ INTAKE → SCAFFOLD → DESIGN SYSTEM → PLAN → STRUCTURE → HOMEPAGE → IN
 | 8 | QA | Automated qa.sh + visual review + brief compliance | Main conversation |
 | 9 | Deploy | Production build, push, update registry | Main conversation |
 
-**Current workflow:** Phases 0-3 run in the main conversation. Phases 4-7 dispatch subagents with skill packs injected. Phases 8-9 run in the main conversation.
-
-**Planned station agents** live at `.claude/agents/_future/` — they represent the target multi-agent architecture but are not yet operational.
+**Current workflow:** Phases 0-3 run in the main conversation. Phases 4-7 dispatch subagents with skill packs injected. Phases 8-9 run in the main conversation. Full phase details (sub-steps, gates, inputs/outputs) live in [SKILL.md](.agents/skills/site-builder/SKILL.md).
 
 Phase 0.5 (domain/hosting) is a manual checklist: `.claude/workflows/phase-0.5-checklist.md`
 
@@ -51,51 +47,6 @@ Phase 0.5 (domain/hosting) is a manual checklist: `.claude/workflows/phase-0.5-c
 ## Project Creation
 
 Each new site is scaffolded fresh with `create-next-app` (no shared template). The scaffold phase installs deps, creates a GitHub repo, and wires `config/site.ts`.
-
-## Superpowers Integration
-
-Superpowers (plugin) provides the **execution methodology** — structured plans, per-task subagent dispatch, and two-stage review. Our pipeline skills provide the **domain knowledge** — how to build beautiful trades websites.
-
-### Superpowers Workflow per Build
-
-| Step | Superpowers Skill | What It Does |
-|------|-------------------|-------------|
-| Brief refinement | `superpowers:brainstorming` | Socratic questioning, design in digestible chunks |
-| Workspace isolation | `superpowers:using-git-worktrees` | Isolated branch for the build |
-| Implementation plan | `superpowers:writing-plans` | Exact files, exact code, 2-5 min tasks, verification steps |
-| Build execution | `superpowers:subagent-driven-development` | Fresh subagent per task + two-stage review |
-| Per-task review | `superpowers:requesting-code-review` | Stage 1: spec compliance. Stage 2: code quality |
-| Final verification | `superpowers:verification-before-completion` | Systematic check everything works |
-| Branch completion | `superpowers:finishing-a-development-branch` | Verify → merge/PR → cleanup |
-
-### How Subagents Get Skill Knowledge
-
-Subagents can't invoke skills (skills live in main conversation). The belt **injects** relevant skill knowledge from **skill packs** (`.claude/workflows/skill-packs/`) into each implementer prompt:
-- Structural tasks get: `skill-packs/structural.md`
-- Section/UI tasks get: `skill-packs/theme-and-ui.md`
-- Content tasks get: `skill-packs/content.md`
-- SEO tasks get: `skill-packs/seo.md`
-
-Each skill pack is a condensed, copy-pasteable block of critical knowledge extracted from the full skills. This replaces manual copy-pasting of skill knowledge into prompts.
-
-## Skills — How They're Used
-
-Skills are invoked in the **main conversation** at the start of each phase. Subagents receive **skill packs** (condensed knowledge) injected into their prompts.
-
-| Phase | Name | Main Conversation Skills | Subagent Injection |
-|-------|------|-------------------------|-------------------|
-| 0 | Intake | `superpowers:brainstorming` | — |
-| 1 | Scaffold | `nextjs-app-router-patterns`, `superpowers:using-git-worktrees` | — |
-| 2 | Design System | `frontend-design`, `color-palette` | — |
-| 3 | Plan | `superpowers:writing-plans` | — |
-| 4 | Structure | `superpowers:subagent-driven-development` | `skill-packs/structural.md` |
-| 5 | Homepage | `superpowers:subagent-driven-development` | `skill-packs/theme-and-ui.md` + `skill-packs/content.md` |
-| 6 | Inner Pages | `superpowers:subagent-driven-development` | `skill-packs/theme-and-ui.md` + `skill-packs/content.md` |
-| 7 | SEO & Legal | `superpowers:subagent-driven-development` | `skill-packs/seo.md` + `skill-packs/content.md` |
-| 8 | QA | `superpowers:verification-before-completion` | — |
-| 9 | Deploy | `superpowers:finishing-a-development-branch` | — |
-
-Skill packs live at `.claude/workflows/skill-packs/`. They contain the critical patterns from full skills in a format that can be directly injected into subagent prompts.
 
 ## Key Rules
 
@@ -151,7 +102,6 @@ Desktop: 1280px+    (xl: and 2xl:)
 - **Brief template:** `.claude/workflows/brief-template.md`
 - **Registry:** `registry.json`
 - **Registry schema:** `.claude/workflows/registry-schema.md`
-- **Planned station agents:** `.claude/agents/_future/<station>/agent.md`
 - **Skill packs:** `.claude/workflows/skill-packs/`
 - **Workflows:** `.claude/workflows/`
 - **Signature implementations:** `.claude/workflows/signature-implementations.md`
