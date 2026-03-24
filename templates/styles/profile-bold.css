@@ -1,0 +1,187 @@
+/* ============================================
+   Profile: Bold — High contrast, sharp, brutalist-influenced
+   ============================================
+   Hue range: 270-360 + 0-20 (magentas, reds, hot pinks)
+   Copied to src/styles/profile.css and imported in globals.css.
+   Provides structural shape language only — archetype.css
+   adds palette-specific colours via var(--clr-*) tokens.
+
+   Design rationale: Bold-family trades (demolition, heavy
+   equipment, industrial) demand impact. Zero radii, thick
+   borders, and inverted badges create a brutalist aesthetic.
+   Hover effects are dramatic state changes, not gentle fades.
+   Everything is deliberate and confrontational.
+   ============================================ */
+
+/* ============================================
+   CARD TIERS
+   ============================================ */
+
+/* Featured: zero radius, thick border, offset shadow-
+   block effect. The translate creates a hard geometric
+   shadow that shifts on hover — pure brutalist depth. */
+.card-featured {
+  border-radius: 0;
+  border: 2px solid var(--clr-primary);
+  padding: 2rem;
+  background: var(--clr-surface-2);
+  box-shadow: 6px 6px 0 var(--clr-primary) / 0.25;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card-featured:hover {
+  box-shadow: 3px 3px 0 var(--clr-primary) / 0.4;
+  transform: translate(3px, 3px);
+}
+
+/* Standard: hard edges, 2px solid border.
+   Clean and confrontational — no softness. */
+.card-standard {
+  border-radius: 0;
+  border: 2px solid var(--clr-surface-3);
+  padding: 1.5rem;
+  background: var(--clr-surface-2);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.card-standard:hover {
+  border-color: var(--clr-primary);
+  background: var(--clr-surface-3);
+}
+
+/* Compact: zero radius, heavy bottom border only.
+   Reads like an underlined label or data entry. */
+.card-compact {
+  border-radius: 0;
+  border-bottom: 2px solid var(--clr-surface-3);
+  padding: 1rem 0;
+  background: transparent;
+  transition: border-color 0.15s ease;
+}
+
+.card-compact:hover {
+  border-color: var(--clr-primary);
+}
+
+/* ============================================
+   BADGES & LABELS
+   ============================================ */
+
+/* INVERTED: solid primary background with dark text.
+   No radius, bold weight. Demands attention like a
+   hazard label or industrial marking. */
+.badge-label {
+  display: inline-block;
+  border-radius: 0;
+  padding: 0.3rem 0.75rem;
+  font-size: var(--type-small);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clr-surface-1);
+  background: var(--clr-primary);
+}
+
+/* ============================================
+   BUTTONS (extend DaisyUI)
+   ============================================ */
+
+/* Primary action: zero radius, thick border, ultra-bold.
+   Uppercase and heavy — industrial machinery vibe. */
+.btn-profile {
+  border-radius: 0;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 2rem;
+  background: var(--clr-primary);
+  color: var(--clr-surface-1);
+  border: 2px solid var(--clr-primary);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Dramatic state change: on hover the button
+   inverts — bg becomes surface, text becomes primary.
+   Maximum contrast swap, not a gentle fade. */
+.btn-profile:hover {
+  background: var(--clr-surface-1);
+  color: var(--clr-primary);
+}
+
+/* Ghost variant: thick outlined, dramatic fill on hover. */
+.btn-profile-ghost {
+  border-radius: 0;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 2rem;
+  background: transparent;
+  color: var(--clr-primary);
+  border: 2px solid var(--clr-primary);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Full inversion on hover: fills solid primary. */
+.btn-profile-ghost:hover {
+  background: var(--clr-primary);
+  color: var(--clr-surface-1);
+}
+
+/* ============================================
+   DIVIDERS
+   ============================================ */
+
+/* Thick horizontal bar — 4px hard edge, no curves,
+   no ornament. A bold visual break like a steel beam. */
+.divider-profile {
+  width: 100%;
+  height: 4px;
+  background: var(--clr-primary);
+  border-radius: 0;
+  margin-block: 2rem;
+}
+
+/* ============================================
+   SECTION BACKGROUNDS
+   ============================================ */
+
+/* Deep: near-black — maximum drama and contrast.
+   Content pops against the void. */
+.section-bg-deep {
+  background: var(--clr-surface-1);
+}
+
+/* Gradient: neon streak — a hard diagonal slash of
+   colour. Not a gentle wash — a deliberate strike. */
+.section-bg-gradient {
+  background:
+    linear-gradient(
+      135deg,
+      transparent 30%,
+      var(--clr-primary) / 0.1 45%,
+      var(--clr-primary) / 0.06 55%,
+      transparent 70%
+    ),
+    var(--clr-surface-1);
+}
+
+/* Texture: halftone dot pattern — evokes print,
+   pop art, industrial signage. Bold and graphic. */
+.section-bg-texture {
+  background: var(--clr-surface-1);
+  position: relative;
+}
+
+.section-bg-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    var(--clr-primary) / 0.06 1px,
+    transparent 1px
+  );
+  background-size: 16px 16px;
+  pointer-events: none;
+  z-index: 0;
+}

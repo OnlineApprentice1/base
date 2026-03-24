@@ -1,0 +1,190 @@
+/* ============================================
+   Profile: Warm — Organic, rough, handmade, crafted
+   ============================================
+   Hue range: 20-80 (ambers, oranges, warm golds)
+   Copied to src/styles/profile.css and imported in globals.css.
+   Provides structural shape language only — archetype.css
+   adds palette-specific colours via var(--clr-*) tokens.
+
+   Design rationale: Warm-family trades (carpentry, roofing,
+   welding) feel handmade. Asymmetric radii, rough edges, and
+   stamp-like badges evoke workshop authenticity. Nothing is
+   perfectly square or perfectly round — always slightly off,
+   like hand-cut wood.
+   ============================================ */
+
+/* ============================================
+   CARD TIERS
+   ============================================ */
+
+/* Featured: large hero cards, portfolio items
+   Asymmetric radius + clip-path rough bottom edge
+   creates a torn-paper / hand-cut feel. */
+.card-featured {
+  border-radius: 1rem 0.25rem 1rem 0.25rem;
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% 95%,
+    85% 97%, 70% 95%, 55% 98%,
+    40% 95%, 25% 97%, 10% 95%, 0% 97%
+  );
+  overflow: hidden;
+  padding: 2rem;
+  background: var(--clr-surface-2);
+  border-left: 4px solid var(--clr-primary);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-featured:hover {
+  box-shadow: 0 8px 24px var(--clr-primary) / 0.15;
+  transform: translateY(-2px);
+}
+
+/* Standard: service cards, testimonials
+   Asymmetric radius with thick left border accent
+   anchors the eye and suggests a bookmark or tab. */
+.card-standard {
+  border-radius: 0.75rem 0.25rem 0.25rem 0.75rem;
+  border-left: 4px solid var(--clr-primary);
+  padding: 1.5rem;
+  background: var(--clr-surface-2);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-standard:hover {
+  box-shadow: 0 6px 18px var(--clr-primary) / 0.12;
+  border-color: var(--clr-accent);
+}
+
+/* Compact: FAQ items, list items, small tiles
+   Minimal — just a left-border stripe for grouping. */
+.card-compact {
+  border-radius: 0.25rem;
+  border-left: 3px solid var(--clr-primary-muted);
+  padding: 1rem 1.25rem;
+  background: var(--clr-surface-2);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.card-compact:hover {
+  border-color: var(--clr-primary);
+  background: var(--clr-surface-3);
+}
+
+/* ============================================
+   BADGES & LABELS
+   ============================================ */
+
+/* Stamp-like: rectangular, thick left border,
+   slight rotation to evoke a workshop ink-stamp. */
+.badge-label {
+  display: inline-block;
+  border-radius: 0.2rem;
+  border-left: 3px solid var(--clr-primary);
+  padding: 0.25rem 0.75rem;
+  font-size: var(--type-small);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--clr-primary-light);
+  background: var(--clr-primary) / 0.08;
+  transform: rotate(-1deg);
+}
+
+/* ============================================
+   BUTTONS (extend DaisyUI)
+   ============================================ */
+
+/* Primary action: medium radius, bold, slightly
+   wider tracking gives a sturdy, workshop feel. */
+.btn-profile {
+  border-radius: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.75rem 1.75rem;
+  background: var(--clr-primary);
+  color: var(--clr-surface-1);
+  border: 2px solid var(--clr-primary);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-profile:hover {
+  box-shadow: 0 4px 14px var(--clr-primary) / 0.25;
+  background: var(--clr-primary-light);
+}
+
+/* Ghost variant: outlined, warm hover fill. */
+.btn-profile-ghost {
+  border-radius: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.75rem 1.75rem;
+  background: transparent;
+  color: var(--clr-primary);
+  border: 2px solid var(--clr-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-profile-ghost:hover {
+  background: var(--clr-primary) / 0.1;
+  color: var(--clr-primary-light);
+}
+
+/* ============================================
+   DIVIDERS
+   ============================================ */
+
+/* Rough organic wavy line — clip-path creates an
+   irregular horizon like hand-torn paper. */
+.divider-profile {
+  width: 100%;
+  height: 6px;
+  background: var(--clr-primary-muted);
+  clip-path: polygon(
+    0% 40%, 5% 60%, 12% 30%, 20% 55%, 28% 35%,
+    36% 65%, 44% 25%, 52% 60%, 60% 35%, 68% 55%,
+    76% 30%, 84% 65%, 92% 40%, 100% 50%,
+    100% 100%, 0% 100%
+  );
+  margin-block: 2rem;
+}
+
+/* ============================================
+   SECTION BACKGROUNDS
+   ============================================ */
+
+/* Deep: darkest warm surface, grounding sections
+   like hero or footer. */
+.section-bg-deep {
+  background: var(--clr-surface-1);
+}
+
+/* Gradient: warm diagonal sweep that suggests
+   firelight or golden-hour warmth. */
+.section-bg-gradient {
+  background:
+    linear-gradient(
+      135deg,
+      var(--clr-primary) / 0.08 0%,
+      transparent 40%,
+      var(--clr-accent) / 0.06 100%
+    ),
+    var(--clr-surface-1);
+}
+
+/* Texture: film-grain overlay for a tactile,
+   workshop feel. Uses a tiny noise pattern. */
+.section-bg-texture {
+  background: var(--clr-surface-1);
+  position: relative;
+}
+
+.section-bg-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 0;
+}

@@ -1,0 +1,193 @@
+/* ============================================
+   Profile: Earth — Natural, soft, rounded, organic curves
+   ============================================
+   Hue range: 80-180 (greens, teals, olive, sage)
+   Copied to src/styles/profile.css and imported in globals.css.
+   Provides structural shape language only — archetype.css
+   adds palette-specific colours via var(--clr-*) tokens.
+
+   Design rationale: Earth-family trades (landscaping, tree
+   care, gardening) connect to nature. Generous radii, soft
+   shadows, and pill shapes feel like river stones and leaves.
+   Borders dissolve — depth comes from shadow alone, as if
+   elements float above an organic surface.
+   ============================================ */
+
+/* ============================================
+   CARD TIERS
+   ============================================ */
+
+/* Featured: fully rounded with soft shadow.
+   No visible border — shadow alone creates depth,
+   like a stone resting on soil. */
+.card-featured {
+  border-radius: 2rem;
+  padding: 2rem;
+  background: var(--clr-surface-2);
+  border: none;
+  box-shadow:
+    0 2px 8px var(--clr-surface-1) / 0.15,
+    0 8px 24px var(--clr-surface-1) / 0.1;
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.card-featured:hover {
+  box-shadow:
+    0 4px 12px var(--clr-surface-1) / 0.15,
+    0 16px 40px var(--clr-surface-1) / 0.15;
+  transform: translateY(-3px);
+}
+
+/* Standard: rounded with soft shadow depth.
+   No hard borders — just gentle elevation. */
+.card-standard {
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  background: var(--clr-surface-2);
+  border: none;
+  box-shadow: 0 2px 12px var(--clr-surface-1) / 0.1;
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.card-standard:hover {
+  box-shadow:
+    0 4px 8px var(--clr-surface-1) / 0.1,
+    0 12px 28px var(--clr-surface-1) / 0.12;
+  transform: translateY(-2px);
+}
+
+/* Compact: pill-shaped for small items.
+   Fully rounded feels like a pebble or seed. */
+.card-compact {
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  background: var(--clr-surface-2);
+  border: none;
+  box-shadow: 0 1px 6px var(--clr-surface-1) / 0.08;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.card-compact:hover {
+  box-shadow: 0 3px 12px var(--clr-surface-1) / 0.12;
+  background: var(--clr-surface-3);
+}
+
+/* ============================================
+   BADGES & LABELS
+   ============================================ */
+
+/* Full pill: soft tinted background, no border.
+   Like a leaf tag or seed label — gentle and natural. */
+.badge-label {
+  display: inline-block;
+  border-radius: 9999px;
+  padding: 0.3rem 1rem;
+  font-size: var(--type-small);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--clr-primary-light);
+  background: var(--clr-primary) / 0.1;
+  border: none;
+}
+
+/* ============================================
+   BUTTONS (extend DaisyUI)
+   ============================================ */
+
+/* Primary action: fully rounded pill with generous
+   padding. Organic and inviting — easy to press. */
+.btn-profile {
+  border-radius: 9999px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.75rem 2.25rem;
+  background: var(--clr-primary);
+  color: var(--clr-surface-1);
+  border: none;
+  box-shadow: 0 2px 8px var(--clr-primary) / 0.2;
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.btn-profile:hover {
+  box-shadow: 0 4px 16px var(--clr-primary) / 0.3;
+  transform: translateY(-1px);
+}
+
+/* Ghost variant: pill outline, soft hover fill. */
+.btn-profile-ghost {
+  border-radius: 9999px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.75rem 2.25rem;
+  background: transparent;
+  color: var(--clr-primary);
+  border: 1.5px solid var(--clr-primary) / 0.4;
+  transition: background-color 0.35s ease, border-color 0.35s ease;
+}
+
+.btn-profile-ghost:hover {
+  background: var(--clr-primary) / 0.08;
+  border-color: var(--clr-primary);
+}
+
+/* ============================================
+   DIVIDERS
+   ============================================ */
+
+/* Organic curved wave — leaf-inspired undulation
+   using an SVG background. Soft and natural. */
+.divider-profile {
+  width: 100%;
+  height: 8px;
+  margin-block: 2rem;
+  background: transparent;
+  position: relative;
+}
+
+.divider-profile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4 C100 0, 200 8, 300 4 S500 0, 600 4 S700 8, 800 4' stroke='%2366886644' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* ============================================
+   SECTION BACKGROUNDS
+   ============================================ */
+
+/* Deep: rich earthy dark — like forest floor
+   at dusk. Grounding and enveloping. */
+.section-bg-deep {
+  background: var(--clr-surface-1);
+}
+
+/* Gradient: radial from centre — like sunlight
+   filtering through a canopy. Warm centre, soft edges. */
+.section-bg-gradient {
+  background:
+    radial-gradient(
+      ellipse at 50% 40%,
+      var(--clr-primary) / 0.08 0%,
+      transparent 55%
+    ),
+    var(--clr-surface-1);
+}
+
+/* Texture: organic leaf-vein / moss texture overlay.
+   Subtle diagonal lines suggest natural growth patterns. */
+.section-bg-texture {
+  background: var(--clr-surface-1);
+  position: relative;
+}
+
+.section-bg-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 30 Q15 25 30 30 T60 30' fill='none' stroke='%2366886608' stroke-width='1'/%3E%3Cpath d='M0 50 Q15 45 30 50 T60 50' fill='none' stroke='%2366886606' stroke-width='1'/%3E%3Cpath d='M0 10 Q15 5 30 10 T60 10' fill='none' stroke='%2366886606' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}

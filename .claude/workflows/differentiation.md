@@ -38,6 +38,15 @@ If the last site used a Warm primary, the next should use Cool, Earth, or Bold. 
 
 Exception: if the client has established brand colors, those take priority. Note the override in the registry entry.
 
+### Rule 4b — Colour Quality Minimums
+These OKLCH minimums prevent washed-out, generic-looking palettes:
+- **Primary chroma:** minimum 0.12 (below this, the primary looks grey)
+- **Accent chroma:** minimum 0.12 (below this, the accent fails to "pop" against dark backgrounds)
+- **Primary–accent hue separation:** minimum 40° (closer hues blend together and lose contrast)
+- **Surface hue:** must match primary hue ±30° OR use a neutral cool hue (240–260°). Random surface hues break palette coherence.
+
+If a concept library entry suggests a muted/desaturated palette (e.g., "calm" or "premium" mood), reduce **lightness** rather than chroma to keep colours identifiable. Example: `oklch(45% 0.14 230)` reads as "muted blue" while `oklch(60% 0.06 230)` reads as "grey."
+
 ### Rule 5 — Layout Variation
 Vary these structural choices across consecutive builds:
 - **Section count on home page:** alternate between 5-6 and 7-8 sections

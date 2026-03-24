@@ -1,248 +1,511 @@
 ---
 name: site-builder
-description: Assembly line orchestrator for building Next.js websites. Invoke when the user wants to build a new site, start a project, run a specific phase, or check build status. Manages the conveyor belt that moves projects through specialized station agents. Now powered by Superpowers for plan-driven, review-gated builds.
+description: Assembly line orchestrator for building Next.js websites. Invoke when the user wants to build a new site, start a project, run a specific phase, or check build status. Manages the conveyor belt with skill packs, automated QA, and Superpowers methodology.
 ---
 
-# Site Builder — Conveyor Belt Orchestrator (Superpowers Edition)
+# Site Builder — Conveyor Belt Orchestrator
 
-You are the conveyor belt. You move projects through specialized stations, managing handoffs and validating gates between each one. **Superpowers** provides the execution methodology: structured plans, per-task subagent dispatch, and two-stage review (spec compliance + code quality).
+You are the conveyor belt. You move projects through 10 discrete phases, each with a single job, clear inputs/outputs, and a gate that must pass before proceeding.
 
 ## When to Invoke
 
 - User says "build a site", "new site", "new project", or "start a build"
-- User wants to run a specific station/phase
+- User wants to run a specific phase
 - User wants to resume or continue an in-progress build
 - User wants to check what's been built (read registry.json)
-- User wants to make changes to an existing site (route to Maintainer)
+- User wants to make changes to an existing site (route to maintenance flow)
 
 ## The Assembly Line
 
 ```
-┌─────────┐    ┌──────────┐    ┌──────────┐    ┌─────────┐    ┌────┐    ┌──────────┐
-│ INTAKE   │───▸│ SCAFFOLD │───▸│ DESIGNER │───▸│ BUILDER │───▸│ QA │───▸│ DEPLOYER │
-│ Phase 0  │    │ Phase 1  │    │ Phase 2  │    │ Phase 3 │    │    │    │ Phase 4  │
-└─────────┘    └──────────┘    └──────────┘    └─────────┘    └────┘    └──────────┘
-     │                                                                        │
-     │              ┌────────────┐                                            │
-     │              │ MAINTAINER │◂───────────── (post-launch) ───────────────│
-     │              │ Phase 5    │                                            │
-     │              └────────────┘                                            │
-     ▾                                                                        ▾
-  User confirms                                                        registry.json
-  vibe brief                                                           updated
+┌────────┐  ┌────────┐  ┌─────────┐  ┌──────┐  ┌───────────┐  ┌────────┐  ┌───────────┐  ┌───────────┐  ┌────┐  ┌────────┐
+│INTAKE  │─▸│SCAFFOLD│─▸│ DESIGN  │─▸│ PLAN │─▸│ STRUCTURE │─▸│HOMEPAGE│─▸│INNER PAGES│─▸│SEO & LEGAL│─▸│ QA │─▸│ DEPLOY │
+│Phase 0 │  │Phase 1 │  │ SYSTEM  │  │Phs 3 │  │  Phase 4  │  │Phase 5 │  │  Phase 6  │  │  Phase 7  │  │Ph 8│  │Phase 9 │
+└────────┘  └────────┘  │ Phase 2 │  └──────┘  └───────────┘  └────────┘  └───────────┘  └───────────┘  └────┘  └────────┘
+                         └─────────┘
+     │                                                                                                              │
+     ▾                                                                                                              ▾
+  Brief saved to                                                                                             registry.json
+  .claude/briefs/                                                                                            updated
 ```
 
-## Superpowers Integration
+## Phase Execution Model
 
-Superpowers skills are invoked alongside our pipeline skills. They provide the **methodology** (how to plan, execute, and review), while our skills provide the **domain knowledge** (how to build Next.js sites with DaisyUI, Framer Motion, etc.).
+| Phases | Runs in | Mode |
+|--------|---------|------|
+| 0-3 | Main conversation | Belt drives directly |
+| 4-7 | Subagents | Belt dispatches with skill packs + design context |
+| 8-9 | Main conversation | Belt drives directly |
 
-### How Superpowers Maps to Our Phases
+---
 
-| Pipeline Phase | Superpowers Skill | What It Does |
-|----------------|-------------------|-------------|
-| Phase 0 (Intake) | `superpowers:brainstorming` | Socratic refinement of the brief — asks questions, explores alternatives, presents design in digestible chunks |
-| Phase 1 (Scaffold) | `superpowers:using-git-worktrees` | Creates isolated workspace on a new branch for the build |
-| Phase 2 (Design) | `superpowers:writing-plans` | Creates detailed implementation plan with exact files, code, and verification steps |
-| Phase 2-3 (Build) | `superpowers:subagent-driven-development` | Dispatches fresh subagent per task with two-stage review |
-| Per task | `superpowers:requesting-code-review` | Spec compliance review, then code quality review after each task |
-| Phase 4 (QA) | `superpowers:verification-before-completion` | Systematic verification that everything actually works |
-| Phase 4 (Deploy) | `superpowers:finishing-a-development-branch` | Verify tests → present options → merge/PR → cleanup |
+## Phase 0 — INTAKE
 
-### The New Build Flow
+**Job:** Interview the user and produce a complete vibe brief.
 
+### Sub-steps:
+1. **Invoke** `superpowers:brainstorming` for Socratic questioning
+2. **Interview round 1** — Business identity: name, trade, location, service area, owner name, contact info
+3. **Interview round 2** — Vibe & mood: 3 mood words, colour direction, what makes them different
+4. **Interview round 3** — Details: key services (top 5), target customer, local specifics, testimonial style
+5. **Read registry.json** — Note last 3 archetypes, last 2 heroes, last 3 section orders, last 2 heading fonts
+6. **Consult concept-library.md** — Pick design concept from the correct colour family rotation
+7. **Consult section-orders.md** — Pick a section order not used in last 3 builds
+8. **Consult animation-library.md** — Assign animation types per section (no more than 2 sections share the same type)
+9. **Make design decisions** — Archetype, hero concept, 3 signature moves, palette family, fonts
+10. **Save brief** to `.claude/briefs/<slug>-brief.md` using `brief-template.md`
+
+**Input:** User conversation
+**Output:** Brief file at `.claude/briefs/<slug>-brief.md`
+**Gate:** User confirms brief. Brief file exists with all required fields filled.
+**Commit:** Brief file
+
+---
+
+## Phase 0.5 — DOMAIN/HOSTING (Manual)
+
+Not automated. User performs domain registration, DNS, and hosting setup. Checklist at `.claude/workflows/phase-0.5-checklist.md`.
+
+---
+
+## Phase 1 — SCAFFOLD
+
+**Job:** Create the project directory, install dependencies, wire site config.
+
+### Sub-steps:
+1. **Invoke** `superpowers:using-git-worktrees` for workspace isolation
+2. **Run** `create-next-app` in `projects/<slug>/`
+3. **Install deps:** `framer-motion lucide-react daisyui@latest resend gray-matter remark remark-html`
+4. **Create GitHub repo:** `gh repo create OnlineApprentice1/<slug> --public --source .`
+5. **Wire** `src/config/site.ts` with business data from brief (name, tagline, phone, email, location, map embed URL)
+6. **Add Unsplash** to `next.config.ts` remote image patterns
+
+**Input:** Brief file
+**Output:** Working project at `projects/<slug>/` + GitHub repo
+**Gate:** `npm run dev` passes without errors
+**Commit:** Initial scaffold
+
+---
+
+## Phase 2 — DESIGN SYSTEM
+
+**Job:** Set up all CSS/theme files so that build subagents have a complete design system to work with.
+
+### Sub-steps:
+1. **Run** `generate-palette.mjs` with brief's palette parameters → produces `colour-tokens.css`, `palette.ts`, `daisyui-theme.css`
+2. **Move generated files** to correct locations (`src/styles/`, `src/lib/`)
+3. **Copy profile CSS:** `cp templates/styles/profile-{family}.css src/styles/profile.css`
+4. **Copy typography CSS:** `cp templates/styles/typography.css src/styles/typography.css`
+5. **Create archetype CSS** at `src/styles/archetype.css` — signature visual patterns, dividers, animations, grain overlay
+6. **Wire globals.css** — imports (tailwindcss, typography, colour-tokens, profile, archetype), DaisyUI 5 theme plugin, `@theme inline` brand tokens, base body styles
+7. **Wire layout.tsx** — Google Font imports (`next/font/google`), `data-theme` on `<html>`, font CSS variables, JSON-LD LocalBusiness schema, page metadata
+8. **Verify** colour token selector matches the data-theme attribute (e.g., `spectrum-light` not just `light`)
+9. **Copy effect components** from `templates/components/effects/` → `src/components/effects/`
+10. **Copy layout templates** from `templates/layouts/` → `src/components/layouts/`
+
+**Input:** Brief file + palette parameters
+**Output:** Complete design system files in project
+**Gate:** `npm run dev` still passes. All CSS files import correctly. DaisyUI theme renders.
+**Commit:** Design system setup
+
+---
+
+## Phase 3 — PLAN
+
+**Job:** Write the implementation plan and generate the per-build design context document.
+
+### Sub-steps:
+1. **Invoke** `superpowers:writing-plans`
+2. **Generate design context document** using `.claude/workflows/design-context-template.md` — includes palette tokens, typography, visual language, signature effect code sketches, layout rules, anti-patterns, existing components
+3. **Consult** `brand-to-visual.md` — turn brief mood words into brand token overrides (animation speed, heading weight, spacing density, border treatment)
+4. **Write implementation plan** — one task per file/component, each with ALL 6 required fields:
+   - Component name and file path
+   - Layout structure (explicit: "asymmetric 7/5 grid", not "build the services section")
+   - Animation assignment (entrance type + stagger pattern from brief)
+   - Anti-pattern (what this section must NOT look like)
+   - Responsive behaviour (how layout changes at mobile/tablet/desktop)
+   - Acceptance criteria (visual, testable)
+5. **Assign tasks to phases** — tag each task as Phase 4 (structure), Phase 5 (homepage), Phase 6 (inner page), or Phase 7 (SEO/legal)
+6. **Run anti-sameness self-review** (see "Anti-Sameness Guard" below)
+7. **Save plan** to PLAN.md
+
+**Input:** Brief file + design context template + brand-to-visual mapping
+**Output:** PLAN.md + design context document
+**Gate:** Plan saved. Self-review passed. All tasks have 6 required fields. Tasks tagged by phase.
+**Commit:** Plan file
+
+---
+
+## Phase 4 — STRUCTURE
+
+**Job:** Build the site shell — navigation, footer, and shared components.
+
+### Sub-steps:
+1. **Read** skill pack: `skill-packs/structural.md`
+2. **Dispatch subagent** with: structural skill pack + design context + brief Brand Direction/Design Decisions
+3. **Subagent builds:**
+   - `src/components/Header.tsx` — responsive nav, mobile menu, CTA button
+   - `src/components/Footer.tsx` — multi-column layout, quick links, service area, contact info, legal links
+   - `src/components/Reveal.tsx` — Framer Motion wrapper with 6+ animation variants
+   - Any additional shared components from the plan (e.g., StaggerGroup)
+4. **Spec review** — verify: profile classes used, Lucide icons (not emoji), type classes, responsive
+
+**Input:** Plan (Phase 4 tasks) + skill pack + design context + brief
+**Output:** Working Header, Footer, and animation components
+**Gate:** Site shell renders. Nav links work. Footer has legal page links. Mobile menu works.
+**Commit:** Site structure
+
+---
+
+## Phase 5 — HOMEPAGE
+
+**Job:** Build all homepage sections and verify coherence.
+
+### Sub-steps:
+1. **Read** skill packs: `skill-packs/theme-and-ui.md` + `skill-packs/content.md`
+2. **For each homepage section** (from brief's section order):
+   - Dispatch subagent with: UI + content skill packs, design context, brief sections, full task spec from plan
+   - If task references a signature move: include code sketch from `signature-implementations.md`
+   - Subagent builds the section component + adds it to `page.tsx`
+   - Spec review: profile card tiers, type classes, layout template used, no emoji, no card-archetype, no transition-all, animation matches plan
+3. **Assemble page.tsx** — wire all sections in brief's section order (if not already assembled by subagents)
+4. **Run coherence review** using `.claude/workflows/coherence-review-prompt.md`:
+   - Layout variety (no more than 2 centered, no more than 2 card grids)
+   - Spacing rhythm (varied section density)
+   - Animation correctness (matches plan assignments)
+   - Signature moves visible (not invisible CSS)
+5. **Fix coherence issues** if any found
+
+**Input:** Plan (Phase 5 tasks) + skill packs + design context + brief
+**Output:** Complete homepage with all sections
+**Gate:** All homepage sections built. Coherence review passed. Page renders without errors.
+**Commit:** Homepage sections (can be multiple commits — one per section or batched)
+
+### Parallelization:
+Homepage sections that don't depend on each other can be dispatched to parallel subagents. Group by independence:
+- **Batch A:** Hero + Testimonials + Stats (no shared state)
+- **Batch B:** Services + Process + CTA (may reference each other's layout for contrast)
+
+---
+
+## Phase 6 — INNER PAGES
+
+**Job:** Build all inner pages (services, about, contact).
+
+### Sub-steps:
+1. **Read** skill packs: `skill-packs/theme-and-ui.md` + `skill-packs/content.md`
+2. **For each inner page** from the brief (e.g., Services E-tabs, About D-magazine, Contact B-map-hero):
+   - Dispatch subagent with: UI + content skill packs, design context, brief sections, full task spec from plan
+   - Brief specifies layout variant for each page (A through F options in inner-page-layouts.md)
+   - Subagent builds the page + any page-specific components (e.g., ServiceTabs.tsx, ContactForm.tsx)
+3. **Services page** — matches brief's layout variant, includes all services from brief, FAQ section
+4. **About page** — owner name appears here (and ONLY here), origin story, values, team
+5. **Contact page** — Google Maps embed (MANDATORY), contact form, API route at `src/app/api/contact/route.ts`
+6. **Spec review per page** — verify: owner name only on about page, Canadian English, no banned phrases, Google Maps on contact
+
+**Input:** Plan (Phase 6 tasks) + skill packs + design context + brief
+**Output:** All inner pages built and rendering
+**Gate:** All inner pages render. Contact form submits. Google Maps visible. Owner name only on About.
+**Commit:** Inner pages (one commit per page or batched)
+
+### Parallelization:
+All 3 inner pages are independent — dispatch all 3 subagents in parallel.
+
+---
+
+## Phase 7 — SEO & LEGAL
+
+**Job:** Add all SEO files and legal pages.
+
+### Sub-steps:
+1. **Read** skill packs: `skill-packs/seo.md` + `skill-packs/content.md`
+2. **Dispatch subagent** with: SEO + content skill packs, design context, brief, site config
+3. **Subagent builds:**
+   - `src/app/robots.ts` — sitemap URL, standard crawl rules
+   - `src/app/sitemap.ts` — all pages with priority values
+   - JSON-LD `LocalBusiness` schema in `layout.tsx` (if not already wired in Phase 2)
+   - `src/app/opengraph-image.tsx` — 1200x630, palette colours (hex for Satori), business name + tagline
+   - `public/llms.txt` — LLM-friendly site description
+   - `src/app/privacy/page.tsx` — PIPEDA-compliant privacy policy
+   - `src/app/terms/page.tsx` — basic service business terms
+4. **Verify:** Privacy and Terms linked from Footer (should be wired in Phase 4)
+5. **Verify:** OG image uses correct palette (hex, not oklch — Satori limitation)
+
+**Input:** Plan (Phase 7 tasks) + skill packs + site config + brief
+**Output:** All SEO files + legal pages
+**Gate:** robots.ts, sitemap.ts, OG image, privacy, terms all exist. Legal pages linked from footer.
+**Commit:** SEO and legal pages
+
+---
+
+## Phase 8 — QA
+
+**Job:** Run all automated checks, perform visual review, verify brief compliance.
+
+### Sub-steps:
+1. **Run** `scripts/qa.sh <project-dir>` — automated checks:
+   - Build passes (`npm run build`)
+   - No `transition-all` in source
+   - No banned copy phrases
+   - Required files exist (robots, sitemap, privacy, terms, OG image)
+   - No placehold.co URLs
+   - Canadian English check
+   - DaisyUI 5 syntax (not v4)
+   - Brief has all required fields
+   - Owner name not leaked outside About page
+   - No generic headings
+   - Lighthouse scores (target 90+)
+   - Screenshots at 375px, 768px, 1024px, 1440px
+   - Registry entry exists
+   - Signature moves present in code
+   - No emoji icons in JSX
+   - Layout variety check
+   - Profile/typography classes used
+   - Colour hygiene (OKLCH format)
+   - WCAG contrast validation
+2. **Fix any failures** — edit code, re-run qa.sh
+3. **Repeat** until qa.sh passes all checks
+4. **Visual review** — walk through every item in `.claude/workflows/visual-review-checklist.md`:
+   - Responsive at 375px, 768px, 1024px, 1440px, 1920px
+   - No broken layout or overflow
+   - Animations working
+   - Images loading
+   - Signature moves visible
+   - Profile classes rendering correctly
+5. **Brief compliance** — compare site output against brief's Design Decisions:
+   - Hero matches described concept
+   - Section order matches
+   - Signature moves implemented
+   - Colour palette applied correctly
+   - Typography matches
+
+**Input:** Complete project
+**Output:** QA report + screenshots + fixes applied
+**Gate:** qa.sh passes ALL checks. Visual checklist passes ALL items. Brief compliance confirmed.
+**Commit:** QA fixes (if any)
+
+---
+
+## Phase 9 — DEPLOY
+
+**Job:** Production build, push to GitHub, update registry.
+
+### Sub-steps:
+1. **Invoke** `superpowers:finishing-a-development-branch`
+2. **Production build:** `npm run build` (final verification)
+3. **Git push** to GitHub:
+   ```bash
+   GIT_SSH_COMMAND='ssh -i ~/.ssh/github_onlineapprentice -o IdentitiesOnly=yes' git push
+   ```
+4. **Update registry.json** — add new site entry with all fields (slug, business, trade, location, archetype, palette, hero, signatureMoves, fonts, sectionOrder, animationPatterns, repo, date, status, theme, innerPageLayouts)
+5. **Validate registry** against schema at `.claude/workflows/registry-schema.md`
+6. **Commit** registry update + push
+7. **Save build learnings** to memory (if any new patterns discovered)
+
+**Input:** QA-passed project
+**Output:** Code on GitHub + registry updated
+**Gate:** Registry valid. Push succeeded. Status set to "built".
+**Commit:** Registry update
+
+---
+
+## Design Context Injection
+
+Subagents can't invoke skills. The belt provides them with context layers:
+
+### Layer 0: Pre-Built Assets (set up in Phase 2)
+
+These exist in the project BEFORE any subagent runs (Phase 4+). Subagents import and use them — they don't build them.
+
+| Asset | Location | Purpose |
+|-------|----------|---------|
+| Profile CSS | `src/styles/profile.css` | Structural shape language (card tiers, badges, buttons, dividers, section backgrounds) |
+| Typography CSS | `src/styles/typography.css` | Fluid type scale (clamp values), section density classes |
+| Colour tokens CSS | `src/styles/colour-tokens.css` | Expanded 13-token colour system with gradient presets |
+| Effect components | `src/components/effects/` | WaveDivider, GradientSweep, RingBorder, TracePath, GlowCursor, ParticleField |
+| Layout templates | `src/components/layouts/` | 8 section layout shells (BentoGrid, Zigzag, FullBleed, StatsBar, etc.) |
+| Lucide icons | `lucide-react` package | Trade-specific icons (see icon-mappings.md) |
+
+### Layer 1: Skill Packs (generic, shared across all builds)
+
+| Task Type | Skill Pack File | Used in Phase |
+|-----------|----------------|---------------|
+| Structural (Header, Footer, Motion.tsx) | `skill-packs/structural.md` | 4 |
+| UI/Sections (homepage sections, theme) | `skill-packs/theme-and-ui.md` | 5, 6 |
+| Content (pages, copy, blog, legal) | `skill-packs/content.md` | 5, 6, 7 |
+| SEO (robots, sitemap, JSON-LD, OG) | `skill-packs/seo.md` | 7 |
+
+### Layer 2: Per-Build Design Context (unique to THIS site)
+
+Generated in Phase 3 using the template at `.claude/workflows/design-context-template.md`. This document includes:
+- Palette tokens with usage guidance
+- Typography character descriptions
+- Visual language and mood (from brief)
+- Signature effect code sketches (from `signature-implementations.md`)
+- Layout rules specific to this build
+- Anti-patterns ("this site must NOT...")
+- What components already exist (Reveal, StaggerGroup, archetype.css)
+
+### Layer 3: Brief Design Sections (site personality)
+
+Extract the **Brand Direction** and **Design Decisions** sections from the brief at `.claude/briefs/<slug>-brief.md` and include them verbatim in every subagent prompt.
+
+### How to inject (every subagent prompt in Phases 4-7 must include ALL of these):
+1. Read the relevant skill pack file: `Read .claude/workflows/skill-packs/<pack>.md`
+2. Read the brief file: `Read .claude/briefs/<slug>-brief.md` — extract Brand Direction + Design Decisions
+3. Read or reference the design context document (generated once in Phase 3)
+4. If the task references a signature move, read `signature-implementations.md` for the code sketch
+5. Include ALL of the above in the subagent's prompt — skill pack first, then design context, then brief sections, then task
+6. Never summarize or condense — the subagent needs the full context
+
+### Example Subagent Prompt Structure:
 ```
-Phase 0 — INTAKE + BRAINSTORMING
-  ├── Invoke: superpowers:brainstorming
-  ├── Refine brief through Socratic questioning
-  ├── Present design in digestible sections for validation
-  └── Save brief to .claude/briefs/<slug>-brief.md
-  Gate: User confirms brief
+## Technical Patterns (Skill Pack)
+[Full content of theme-and-ui.md]
 
-Phase 0.5 — DOMAIN/HOSTING (manual checklist)
+## Design Context for This Build
+[Generated design context document]
 
-Phase 1 — SCAFFOLD + WORKTREE
-  ├── Invoke: superpowers:using-git-worktrees
-  ├── Invoke: nextjs-app-router-patterns, nextjs-best-practices
-  ├── Create project, install deps, create GitHub repo
-  └── Verify clean workspace
-  Gate: npm run dev passes
+## Brand Direction (from Brief)
+[Brand Direction section from brief]
 
-Phase 2 — DESIGN + PLAN
-  ├── Invoke: frontend-design, color-palette
-  ├── Read registry.json for differentiation
-  ├── Make design decisions (archetype, palette, fonts, hero, signature moves)
-  ├── Invoke: superpowers:writing-plans
-  ├── Write implementation plan with EXACT file paths, code, and verification steps
-  ├── Plan covers: Motion.tsx, Header, Footer, all sections, all pages, SEO, theme
-  ├── Each task is 2-5 minutes, bite-sized, independently verifiable
-  └── Plan reviewed by plan-document-reviewer subagent
-  Gate: Plan approved
-  Save plan to: docs/superpowers/plans/<date>-<slug>.md
+## Design Decisions (from Brief)
+[Design Decisions section from brief]
 
-Phase 2-3 — BUILD (Subagent-Driven Development)
-  ├── Invoke: superpowers:subagent-driven-development
-  ├── For EACH task in the plan:
-  │   ├── Dispatch implementer subagent with:
-  │   │   ├── Full task text (don't make subagent read plan)
-  │   │   ├── Relevant skill knowledge injected into prompt
-  │   │   ├── Context about where this fits in the build
-  │   │   └── Working directory
-  │   ├── Implementer builds + tests + commits + self-reviews
-  │   ├── Dispatch spec reviewer subagent
-  │   │   └── Verifies code matches spec (nothing missing, nothing extra)
-  │   ├── Dispatch code quality reviewer subagent
-  │   │   └── Verifies code is clean, tested, maintainable
-  │   └── Mark task complete
-  ├── Skills injected into implementer prompts per task:
-  │   ├── Structural shell tasks: framer-motion-animator, responsive-design
-  │   ├── Homepage section tasks: daisyui, tailwind-design-system, frontend-design
-  │   ├── Content page tasks: frontend-design, web-accessibility, landing-page
-  │   ├── SEO tasks: seo-local-business, performance
-  │   └── Theme task: tailwind-theme-builder
-  └── After all tasks: dispatch final code reviewer for entire implementation
-  Gate: All tasks pass both reviews
+## Signature Move Implementation
+[Code sketch from signature-implementations.md, if applicable]
 
-Phase 4 — QA + VERIFICATION
-  ├── Invoke: superpowers:verification-before-completion
-  ├── Invoke: web-accessibility, performance, core-web-vitals, ux-audit
-  ├── Run npm run build
-  ├── Check: a11y, performance, Canadian English, banned phrases
-  ├── Fix any issues found
-  └── Verify fixes
-  Gate: Zero critical issues, build passes
-
-Phase 4 — DEPLOY + FINISH
-  ├── Invoke: superpowers:finishing-a-development-branch
-  ├── Git push to GitHub
-  ├── Update registry.json
-  └── Present options: merge, PR, keep, discard
-  Gate: Registry updated, build pushed
+## Your Task
+[Full task text from the plan, including layout spec, anti-pattern, and acceptance criteria]
 ```
 
-## Skill Injection for Subagents
+## Differentiation Workflow
 
-Since subagents can't invoke skills directly, the belt INJECTS skill knowledge into each implementer's prompt. The key knowledge to inject per task type:
+During Phase 0 (Intake), before the brief is finalized:
+1. Read `registry.json` — note last 3 archetypes, last 2 heroes, last 3 signature moves
+2. Read `concept-library.md` — pick from the correct colour family rotation
+3. Read `section-orders.md` — pick a section order not used recently
+4. Read `animation-library.md` — assign varied animation types
+5. Read `differentiation.md` — verify all rules pass
+6. Record ALL choices in the brief and later in the registry entry
 
-### For structural components (Header, Footer, Motion.tsx):
-```
-Inject from framer-motion-animator:
-- useInView + spring reveals
-- useReducedMotion for all animations
-- AnimatePresence for exit animations
-- Spring physics: { type: "spring", stiffness: 300, damping: 24 }
+## Task Specification Requirements
 
-Inject from responsive-design:
-- Mobile-first (base styles = mobile)
-- Breakpoints: sm:640px, md:768px, lg:1024px, xl:1280px
-```
+Every plan task for a homepage section or inner page MUST include all of these fields. Tasks that only specify "build X component" without layout and visual constraints will produce generic output.
 
-### For homepage sections:
-```
-Inject from frontend-design:
-- Bold aesthetic direction, not generic
-- Unexpected layouts, asymmetry, overlap
-- Grain textures, gradient meshes, atmospheric backgrounds
-- One well-orchestrated animation per section
+### Required Fields Per Task:
 
-Inject from daisyui:
-- DaisyUI 5 syntax: @plugin "daisyui/theme" { name: "..."; ... }
-- Semantic classes: bg-primary, text-base-content, etc.
-- Custom themes with OKLCH colours
+1. **Component name and file path** — e.g., `src/components/home/ServicesSection.tsx`
+2. **Layout structure** — explicit, not vague:
+   - GOOD: "Asymmetric 7/5 grid with image bleeding left, text stack right-aligned"
+   - GOOD: "Alternating zigzag — odd rows: image left/text right, even rows: reversed"
+   - GOOD: "Full-bleed hero with text in lower-left quadrant, not centered"
+   - BAD: "Build the services section" (no layout guidance)
+   - BAD: "Create a grid of cards" (invites generic 3-column grid)
+3. **Animation assignment** — entrance animation + stagger pattern from the brief:
+   - e.g., "Entrance: slide-left/slide-right alternating. No stagger (sequential items, not grid)."
+4. **Anti-pattern** — what this section must NOT look like:
+   - e.g., "Do NOT center the heading with a symmetrical 3-column card grid below it."
+   - e.g., "Do NOT use the same layout as the section above (fleet showcase uses a grid — this must NOT)."
+5. **Responsive behaviour** — how layout changes:
+   - e.g., "Desktop: 7/5 grid. Tablet: stack to single column, image on top. Mobile: same as tablet, reduce padding."
+6. **Acceptance criteria** — what makes this section "done" visually:
+   - e.g., "Cards must have visible hover effect. Background gradient must be perceptible. Layout must feel different from the previous section."
 
-Inject from tailwind-design-system:
-- @import "tailwindcss" (not @tailwind)
-- @theme inline { } for custom tokens
-- OKLCH colour values
-```
+### Layout Variety Rule:
 
-### For content pages:
-```
-Inject from web-accessibility:
-- Semantic HTML (nav, main, article, section)
-- Proper heading hierarchy
-- Focus-visible styles
-- ARIA labels where needed
+After writing ALL plan tasks, self-review the set:
+- If more than 2 homepage sections use centered symmetrical layouts → revise at least one to use asymmetric, offset, or alternating structure
+- If more than 2 sections use card grids → revise at least one to use a different pattern (zigzag, bento, timeline, etc.)
 
-Inject from landing-page:
-- Section composition patterns
-- CTA placement and copy patterns
-```
+## Anti-Sameness Guard (Plan Self-Review)
 
-### For SEO files:
-```
-Inject from seo-local-business:
-- LocalBusiness JSON-LD schema
-- robots.ts allowing all crawlers
-- sitemap.ts with all pages
-- OG image generation
-```
+Before the plan is approved in Phase 3, verify ALL of the following:
 
-## Station Registry
+- [ ] **Layout count:** No more than 2 sections use centered symmetrical layouts
+- [ ] **Grid count:** No more than 2 sections use card grids
+- [ ] **Asymmetry present:** At least 1 section uses an asymmetric or unconventional layout
+- [ ] **Animation variety:** No more than 2 sections share the same entrance animation type
+- [ ] **Intentional stillness:** At least 1 section has animation: none
+- [ ] **Spacing variety:** Not all sections use the same vertical padding (vary between py-16, py-20, py-24, py-28)
+- [ ] **No repeat dividers:** If using section dividers, at least 2 different divider treatments exist
+- [ ] **Signature moves assigned:** Each signature move from the brief is assigned to a specific section/component
 
-| # | Station | Agent | Input | Output | Gate |
-|---|---------|-------|-------|--------|------|
-| 1 | Intake | `.claude/agents/intake/` | User conversation | Vibe brief | User confirms brief |
-| 2 | Scaffold | `.claude/agents/scaffold/` | Confirmed brief | Working project + GitHub repo | `npm run dev` passes |
-| 3 | Designer | `.claude/agents/designer/` | Scaffolded project + brief + registry | Implementation plan + design decisions | Plan reviewed + approved |
-| 4 | Builder | `.claude/agents/builder/` | Plan | All files built via subagent-driven-development | All tasks pass two-stage review |
-| 5 | QA | `.claude/agents/qa/` | Complete project | Fixes + QA report | Zero critical issues, build passes |
-| 6 | Deployer | `.claude/agents/deployer/` | QA-passed project | Production build pushed + registry updated | Build succeeds, registry updated |
-| 7 | Maintainer | `.claude/agents/maintainer/` | Existing project + change request | Updated project pushed | Change works, no regressions |
+If any check fails, revise the plan before proceeding to Phase 4.
 
-## The Belt's Job
+## Phase Inputs and Outputs
 
-### Before Each Station
-1. **Verify the previous station's gate passed.**
-2. **Prepare context.** Tell the station agent what it needs from upstream.
-3. **Inject relevant skill knowledge** into the station's prompt.
+| Phase | Name | Input | Output | Gate |
+|-------|------|-------|--------|------|
+| 0 | Intake | User conversation | Brief file | Brief exists, all fields filled, user confirms |
+| 1 | Scaffold | Brief | Working project + GitHub repo | `npm run dev` passes |
+| 2 | Design System | Brief + palette params | CSS/theme files in project | Design system renders, dev still passes |
+| 3 | Plan | Brief + design context template | PLAN.md + design context doc | Plan saved, self-review passed |
+| 4 | Structure | Plan Phase 4 tasks | Header, Footer, Reveal | Shell renders, nav works, mobile menu works |
+| 5 | Homepage | Plan Phase 5 tasks | All homepage sections | Coherence review passed, page renders |
+| 6 | Inner Pages | Plan Phase 6 tasks | Services, About, Contact | All pages render, form works, Maps visible |
+| 7 | SEO & Legal | Plan Phase 7 tasks | robots, sitemap, OG, privacy, terms | All files exist, legal linked from footer |
+| 8 | QA | Complete project | QA report + fixes | qa.sh passes, visual checklist passes |
+| 9 | Deploy | QA-passed project | Code pushed + registry updated | Registry valid, push succeeded |
 
-### After Each Station
-1. **Validate the gate.**
-2. **If gate fails:** Send back with specific feedback.
-3. **If gate passes:** Move to the next station.
+## Superpowers Mode Selection
 
-### Between Stations (The Belt's Value)
-- **Before Intake:** Read `registry.json` for differentiation awareness.
-- **Before Designer:** Summarize brief + differentiation constraints + pass to writing-plans.
-- **Before Builder:** The plan IS the handoff — full task list with exact code.
-- **Before QA:** List what was built so QA knows where to focus.
-- **Before Deployer:** Confirm QA passed, summarize for registry.
+### Full Mode (Quality)
+- **When:** Single site, quality matters, time unconstrained
+- **Phases 4-7:** One subagent per task, two-stage review (spec + code quality)
+- **Time:** ~30-45 min
 
-## Parallel Builds
+### Lite Mode (Speed)
+- **When:** Multiple sites, time-constrained, simple builds
+- **Phases 4-7:** 2-5 related tasks batched per subagent, spec review only
+- **Time:** ~10-15 min
 
-For parallel builds (multiple sites at once), use `superpowers:dispatching-parallel-agents`:
-- Each site is an independent domain (no shared state)
-- Dispatch one agent per site with the full plan
-- Review and integrate results
-- Skip two-stage review for speed (audit manually instead)
+### Non-Negotiable in Both Modes:
+1. Brief MUST be saved to file (`.claude/briefs/<slug>-brief.md`)
+2. Skill packs MUST be injected into every subagent prompt
+3. `scripts/qa.sh` MUST pass before deploy
+4. Registry MUST be updated and validated
+5. Operator MUST visually review the site before pushing
 
-## Skills — Phase-Specific Invocation
+## Parallel Build Opportunities
 
-| Phase | Pipeline Skills | Superpowers Skills |
-|-------|----------------|-------------------|
-| 0 Intake | — | `superpowers:brainstorming` |
-| 1 Scaffold | `nextjs-app-router-patterns`, `nextjs-best-practices` | `superpowers:using-git-worktrees` |
-| 2 Design + Plan | `frontend-design`, `color-palette` | `superpowers:writing-plans` |
-| 2-3 Build | `framer-motion-animator`, `responsive-design`, `daisyui`, `tailwind-design-system`, `frontend-design`, `web-accessibility`, `landing-page`, `seo-local-business`, `performance`, `tailwind-theme-builder` | `superpowers:subagent-driven-development`, `superpowers:requesting-code-review` |
-| 4 QA | `web-accessibility`, `performance`, `core-web-vitals`, `ux-audit` | `superpowers:verification-before-completion` |
-| 4 Deploy | — | `superpowers:finishing-a-development-branch` |
+| Phases | Can parallelize? | How |
+|--------|-----------------|-----|
+| 4 → 5 | Sequential | Structure must exist before homepage sections |
+| 5 sections | Yes | Independent homepage sections in parallel (see Phase 5 batching) |
+| 6 pages | Yes | All 3 inner pages are independent |
+| 5 + 7 | Partial | SEO/legal can start once layout.tsx exists (Phase 2), but OG image benefits from seeing final palette usage |
+| 8 → 9 | Sequential | QA must pass before deploy |
 
 ## Resuming a Build
 
 If a project exists at `projects/<slug>/`:
-1. Check plan file at `docs/superpowers/plans/` for task progress
-2. Check `git log --oneline` to identify last completed task
-3. Resume from the next uncompleted task via subagent-driven-development
+1. Read the brief at `.claude/briefs/<slug>-brief.md`
+2. Check plan file for task progress
+3. Check `git log --oneline` to identify last completed phase
+4. Resume from the next uncompleted phase
+
+### Phase Detection from Git History:
+- Has brief commit → Phase 0 complete
+- Has scaffold commit → Phase 1 complete
+- Has "design system" commit → Phase 2 complete
+- Has plan commit → Phase 3 complete
+- Has "structure" or "header/footer" commit → Phase 4 complete
+- Has "homepage" or section commits → Phase 5 complete (check if all sections present)
+- Has inner page commits → Phase 6 complete
+- Has "SEO" or "legal" commit → Phase 7 complete
+- Has "QA fixes" commit → Phase 8 complete
+- Registry updated → Phase 9 complete
 
 ## Error Handling
 
-- **Task implementer reports BLOCKED:** Provide more context and re-dispatch, or escalate to user
-- **Task implementer reports NEEDS_CONTEXT:** Provide missing info and re-dispatch
-- **Spec review fails:** Implementer fixes, spec reviewer re-reviews
-- **Code quality review fails:** Implementer fixes, quality reviewer re-reviews
-- **Review loop exceeds 3 iterations:** Escalate to user
-- **Build fails at deploy:** Route back to QA
+- **Subagent uses DaisyUI 4 syntax:** The skill pack wasn't injected. Re-dispatch with theme-and-ui.md pack.
+- **Build fails with CSS errors:** Check globals.css for correct `@plugin "daisyui/theme"` syntax.
+- **Spec review fails:** Re-dispatch implementer with specific feedback.
+- **Review loop exceeds 3 iterations:** Escalate to user.
+- **qa.sh fails:** Fix the specific failures, re-run until pass.
+- **Build fails at deploy:** Route back to Phase 8.
 
 ## Registry
 
-`registry.json` tracks every completed build. Updated by the Deployer. Read by the Designer for differentiation.
+`registry.json` tracks every completed build. Schema defined in `.claude/workflows/registry-schema.md`. Validated before committing in Phase 9. Read before design in Phase 0 for differentiation.
