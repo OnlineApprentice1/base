@@ -35,7 +35,7 @@
 }
 
 .card-featured:hover {
-  box-shadow: 0 8px 24px var(--clr-primary) / 0.15;
+  box-shadow: 0 8px 24px color-mix(in oklch, var(--clr-primary) 15%, transparent);
   transform: translateY(-2px);
 }
 
@@ -51,7 +51,7 @@
 }
 
 .card-standard:hover {
-  box-shadow: 0 6px 18px var(--clr-primary) / 0.12;
+  box-shadow: 0 6px 18px color-mix(in oklch, var(--clr-primary) 12%, transparent);
   border-color: var(--clr-accent);
 }
 
@@ -86,7 +86,7 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--clr-primary-light);
-  background: var(--clr-primary) / 0.08;
+  background: color-mix(in oklch, var(--clr-primary) 8%, transparent);
   transform: rotate(-1deg);
 }
 
@@ -108,7 +108,7 @@
 }
 
 .btn-profile:hover {
-  box-shadow: 0 4px 14px var(--clr-primary) / 0.25;
+  box-shadow: 0 4px 14px color-mix(in oklch, var(--clr-primary) 25%, transparent);
   background: var(--clr-primary-light);
 }
 
@@ -125,7 +125,7 @@
 }
 
 .btn-profile-ghost:hover {
-  background: var(--clr-primary) / 0.1;
+  background: color-mix(in oklch, var(--clr-primary) 10%, transparent);
   color: var(--clr-primary-light);
 }
 
@@ -164,9 +164,9 @@
   background:
     linear-gradient(
       135deg,
-      var(--clr-primary) / 0.08 0%,
+      color-mix(in oklch, var(--clr-primary) 8%, transparent) 0%,
       transparent 40%,
-      var(--clr-accent) / 0.06 100%
+      color-mix(in oklch, var(--clr-accent) 6%, transparent) 100%
     ),
     var(--clr-surface-1);
 }

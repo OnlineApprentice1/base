@@ -71,7 +71,7 @@
      feature section highlights */
   --gradient-radial: radial-gradient(
     ellipse at 50% 50%,
-    var(--clr-primary) / 0.15,
+    color-mix(in oklch, var(--clr-primary) 15%, transparent),
     transparent 60%
   );
 
@@ -79,9 +79,9 @@
      backgrounds that need subtle colour interest */
   --gradient-sweep: linear-gradient(
     135deg,
-    var(--clr-primary) / 0.1,
+    color-mix(in oklch, var(--clr-primary) 10%, transparent),
     transparent 50%,
-    var(--clr-accent) / 0.08
+    color-mix(in oklch, var(--clr-accent) 8%, transparent)
   );
 
   /* Spotlight: follows mouse position — pair with JS that
@@ -89,7 +89,7 @@
      centre if no JS. For interactive hero areas. */
   --gradient-spotlight: radial-gradient(
     circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    var(--clr-primary) / 0.2,
+    color-mix(in oklch, var(--clr-primary) 20%, transparent),
     transparent 40%
   );
 
@@ -98,9 +98,9 @@
      for organic blobs. Replace this entire value per build. */
   --gradient-mesh: conic-gradient(
     from 180deg at 50% 50%,
-    var(--clr-primary) / 0.08,
-    var(--clr-accent) / 0.06,
-    var(--clr-primary) / 0.08
+    color-mix(in oklch, var(--clr-primary) 8%, transparent),
+    color-mix(in oklch, var(--clr-accent) 6%, transparent),
+    color-mix(in oklch, var(--clr-primary) 8%, transparent)
   );
 }
 

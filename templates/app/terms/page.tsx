@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -7,21 +8,17 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <section className="max-w-4xl mx-auto py-16 px-4">
-      <h1 className="font-[family-name:var(--font-heading)] text-3xl mb-2">
-        Terms of Service
-      </h1>
-      <p className="text-sm text-base-content/50 mb-10">
+      <h1 className="type-section mb-2">Terms of Service</h1>
+      <p className="type-small text-base-content/50 mb-10">
         Last updated: March 2026
       </p>
 
-      <div className="space-y-8 font-[family-name:var(--font-body)]">
+      <div className="space-y-8">
         <div>
-          <h2 className="font-[family-name:var(--font-heading)] text-xl mb-4">
-            Acceptance of Terms
-          </h2>
-          <p className="text-base-content/80">
-            By accessing our website or using the services provided by
-            {{BUSINESS_NAME}}, you agree to be bound by these Terms of Service.
+          <h2 className="type-card mb-4">Acceptance of Terms</h2>
+          <p className="type-body text-base-content/80">
+            By accessing our website or using the services provided by{" "}
+            {siteConfig.name}, you agree to be bound by these Terms of Service.
             If you do not agree to these terms, please do not use our services.
             We reserve the right to update or modify these terms at any time,
             and your continued use of our services constitutes acceptance of any
@@ -30,11 +27,9 @@ export default function TermsPage() {
         </div>
 
         <div>
-          <h2 className="font-[family-name:var(--font-heading)] text-xl mb-4">
-            Services
-          </h2>
-          <p className="text-base-content/80">
-            {{BUSINESS_NAME}} provides services as described on our website. All
+          <h2 className="type-card mb-4">Services</h2>
+          <p className="type-body text-base-content/80">
+            {siteConfig.name} provides services as described on our website. All
             services are subject to availability and may vary based on location,
             season, and project scope. We reserve the right to refuse service to
             anyone at our discretion.
@@ -42,10 +37,8 @@ export default function TermsPage() {
         </div>
 
         <div>
-          <h2 className="font-[family-name:var(--font-heading)] text-xl mb-4">
-            Quotes and Pricing
-          </h2>
-          <p className="text-base-content/80">
+          <h2 className="type-card mb-4">Quotes and Pricing</h2>
+          <p className="type-body text-base-content/80">
             All quotes provided are estimates and may be subject to change based
             on the actual scope of work, materials required, and site conditions
             discovered during the project. Final pricing will be confirmed in a
@@ -55,10 +48,8 @@ export default function TermsPage() {
         </div>
 
         <div>
-          <h2 className="font-[family-name:var(--font-heading)] text-xl mb-4">
-            Payment Terms
-          </h2>
-          <p className="text-base-content/80">
+          <h2 className="type-card mb-4">Payment Terms</h2>
+          <p className="type-body text-base-content/80">
             Payment terms will be outlined in your service agreement. A deposit
             may be required before work begins. The remaining balance is due upon
             completion of the agreed-upon work unless other arrangements have
@@ -68,10 +59,8 @@ export default function TermsPage() {
         </div>
 
         <div>
-          <h2 className="font-[family-name:var(--font-heading)] text-xl mb-4">
-            Cancellation Policy
-          </h2>
-          <p className="text-base-content/80">
+          <h2 className="type-card mb-4">Cancellation Policy</h2>
+          <p className="type-body text-base-content/80">
             If you need to cancel a scheduled service, please provide at least
             48 hours&apos; notice. Cancellations made with less than 48 hours&apos;
             notice may be subject to a cancellation fee. Deposits may be
@@ -81,11 +70,9 @@ export default function TermsPage() {
         </div>
 
         <div>
-          <h2 className="font-[family-name:var(--font-heading)] text-xl mb-4">
-            Limitation of Liability
-          </h2>
-          <p className="text-base-content/80">
-            To the fullest extent permitted by law, {{BUSINESS_NAME}} shall not
+          <h2 className="type-card mb-4">Limitation of Liability</h2>
+          <p className="type-body text-base-content/80">
+            To the fullest extent permitted by law, {siteConfig.name} shall not
             be liable for any indirect, incidental, special, consequential, or
             punitive damages arising from your use of our services. Our total
             liability for any claim shall not exceed the total amount paid for
@@ -94,10 +81,8 @@ export default function TermsPage() {
         </div>
 
         <div>
-          <h2 className="font-[family-name:var(--font-heading)] text-xl mb-4">
-            Governing Law
-          </h2>
-          <p className="text-base-content/80">
+          <h2 className="type-card mb-4">Governing Law</h2>
+          <p className="type-body text-base-content/80">
             These Terms of Service are governed by and construed in accordance
             with the laws of the Province of Ontario and the federal laws of
             Canada applicable therein. Any dispute arising from these terms
@@ -107,16 +92,14 @@ export default function TermsPage() {
         </div>
 
         <div>
-          <h2 className="font-[family-name:var(--font-heading)] text-xl mb-4">
-            Contact
-          </h2>
-          <p className="text-base-content/80">
+          <h2 className="type-card mb-4">Contact</h2>
+          <p className="type-body text-base-content/80">
             If you have any questions about these Terms of Service, please
             contact us:
           </p>
-          <ul className="list-none text-base-content/80 mt-3 space-y-1.5">
+          <ul className="list-none type-body text-base-content/80 mt-3 space-y-1.5">
             <li>
-              <strong>{{BUSINESS_NAME}}</strong>
+              <strong>{siteConfig.name}</strong>
             </li>
           </ul>
         </div>
