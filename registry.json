@@ -220,6 +220,56 @@
         "about": "story-image",
         "contact": "map-hero-form-below"
       }
+    },
+    {
+      "slug": "summit-fence-deck",
+      "business": "Summit Fence & Deck Co.",
+      "trade": "Fencing & Custom Decks",
+      "location": "Guelph, Ontario",
+      "archetype": "theatrical-curtain-dramatic-bold",
+      "palette": {
+        "primary": "oklch(60% 0.20 5)",
+        "secondary": "oklch(50% 0.10 5)",
+        "accent": "oklch(78% 0.16 85)",
+        "neutral": "oklch(12% 0.01 260)"
+      },
+      "hero": "curtain-split-reveal",
+      "signatureMoves": [
+        "spotlight-sections",
+        "iron-stamp-badge",
+        "jagged-wave-divider"
+      ],
+      "fonts": {
+        "heading": "Playfair Display",
+        "body": "Lato"
+      },
+      "sectionOrder": [
+        "hero",
+        "signature-project",
+        "services",
+        "process",
+        "materials",
+        "testimonials",
+        "cta"
+      ],
+      "animationPatterns": [
+        "clip-reveal+parallax",
+        "blur-sharpen",
+        "slide-alternate+cascade",
+        "fade-up+cascade",
+        "scale-up+fan",
+        "rotate-in+wave",
+        "none"
+      ],
+      "repo": "OnlineApprentice1/summit-fence-deck",
+      "date": "2026-03-25",
+      "status": "built",
+      "theme": "summit",
+      "innerPageLayouts": {
+        "services": "sidebar-nav",
+        "about": "split-hero-values",
+        "contact": "form-sidebar"
+      }
     }
   ]
 }
