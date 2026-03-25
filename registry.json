@@ -1,4 +1,225 @@
 {
   "version": 1,
-  "sites": []
+  "sites": [
+    {
+      "slug": "northwood-landscape",
+      "business": "Northwood Landscape Co.",
+      "trade": "Landscaping & Outdoor Living",
+      "location": "Barrie, Ontario",
+      "archetype": "forest-floor-premium-craft",
+      "palette": {
+        "primary": "oklch(45% 0.14 145)",
+        "secondary": "oklch(30% 0.06 55)",
+        "accent": "oklch(65% 0.20 148)",
+        "neutral": "oklch(95% 0.015 110)"
+      },
+      "hero": "asymmetric-organic-blobs",
+      "signatureMoves": [
+        "fern-frond-reveal",
+        "grain-line-dividers",
+        "spotlight-cursor"
+      ],
+      "fonts": {
+        "heading": "Fraunces",
+        "body": "Figtree"
+      },
+      "sectionOrder": [
+        "hero",
+        "gallery",
+        "services",
+        "testimonials",
+        "about-preview",
+        "cta"
+      ],
+      "animationPatterns": [
+        "clip-reveal+parallax",
+        "blur-sharpen+wave",
+        "slide-alternate",
+        "rotate-in+cascade",
+        "fade-up",
+        "none"
+      ],
+      "repo": "OnlineApprentice1/northwood-landscape",
+      "date": "2026-03-24",
+      "status": "built"
+    },
+    {
+      "slug": "voltline-electric",
+      "business": "Voltline Electric",
+      "trade": "Electrical Services",
+      "location": "Hamilton, Ontario",
+      "archetype": "neon-circuit-industrial",
+      "palette": {
+        "primary": "oklch(60% 0.20 295)",
+        "secondary": "oklch(50% 0.15 295)",
+        "accent": "oklch(78% 0.16 340)",
+        "neutral": "oklch(15% 0.02 260)"
+      },
+      "hero": "full-bleed-perspective-grid",
+      "signatureMoves": [
+        "neon-pulse-borders",
+        "dot-grid-parallax",
+        "electric-arc-dividers"
+      ],
+      "fonts": {
+        "heading": "Space Grotesk",
+        "body": "Inter"
+      },
+      "sectionOrder": [
+        "hero",
+        "stats",
+        "services",
+        "process",
+        "testimonials",
+        "faq-preview",
+        "cta"
+      ],
+      "animationPatterns": [
+        "scale-up+parallax",
+        "scale-up+counter+pop",
+        "blur-sharpen+cascade",
+        "slide-alternate",
+        "fade-up+wave",
+        "rotate-in",
+        "none"
+      ],
+      "repo": "OnlineApprentice1/voltline-electric",
+      "date": "2026-03-24",
+      "status": "built"
+    },
+    {
+      "slug": "ironclad-roofing",
+      "business": "Ironclad Roofing Co.",
+      "trade": "Roofing & Exterior",
+      "location": "Oshawa, Ontario",
+      "archetype": "forge-glow-rugged-craft",
+      "palette": {
+        "primary": "oklch(58% 0.22 50)",
+        "secondary": "oklch(48% 0.11 50)",
+        "accent": "oklch(76% 0.18 105)",
+        "neutral": "oklch(12% 0.01 260)"
+      },
+      "hero": "clip-reveal-radial-glow",
+      "signatureMoves": [
+        "lacquer-sheen-sweep",
+        "ember-glow-borders",
+        "grain-texture-overlay"
+      ],
+      "fonts": {
+        "heading": "Syne",
+        "body": "DM Sans"
+      },
+      "sectionOrder": [
+        "hero",
+        "pain-points",
+        "services",
+        "process",
+        "stats",
+        "testimonials",
+        "cta"
+      ],
+      "animationPatterns": [
+        "clip-reveal+parallax",
+        "fade-up",
+        "blur-sharpen+cascade",
+        "slide-alternate",
+        "scale-up+counter+fan",
+        "rotate-in+wave",
+        "none"
+      ],
+      "repo": "OnlineApprentice1/ironclad-roofing",
+      "date": "2026-03-24",
+      "status": "built"
+    },
+    {
+      "slug": "clearwater-plumbing",
+      "business": "Clearwater Plumbing & Drains",
+      "trade": "Plumbing & Drain Services",
+      "location": "Kingston, Ontario",
+      "archetype": "tidal-pool-clean-precision",
+      "palette": {
+        "primary": "oklch(55% 0.15 220)",
+        "secondary": "oklch(35% 0.04 230)",
+        "accent": "oklch(72% 0.12 175)",
+        "neutral": "oklch(96% 0.01 220)"
+      },
+      "hero": "water-caustic-asymmetric",
+      "signatureMoves": [
+        "pool-depth-cards",
+        "ripple-hover",
+        "glassmorphism-hero-panel"
+      ],
+      "fonts": {
+        "heading": "Urbanist",
+        "body": "Nunito Sans"
+      },
+      "sectionOrder": [
+        "hero",
+        "about-preview",
+        "services",
+        "testimonials",
+        "process",
+        "cta"
+      ],
+      "animationPatterns": [
+        "blur-sharpen+parallax",
+        "slide-right",
+        "fade-up+cascade",
+        "scale-up+wave",
+        "clip-reveal+cascade",
+        "none"
+      ],
+      "repo": "OnlineApprentice1/clearwater-plumbing",
+      "date": "2026-03-25",
+      "status": "built"
+    },
+    {
+      "slug": "brushwork-painting",
+      "business": "Brushwork Painting Co.",
+      "trade": "Painting & Decorating",
+      "location": "Oakville, Ontario",
+      "archetype": "moss-wall-friendly-local",
+      "palette": {
+        "primary": "oklch(55% 0.15 120)",
+        "secondary": "oklch(40% 0.06 120)",
+        "accent": "oklch(70% 0.16 30)",
+        "neutral": "oklch(98% 0.01 120)"
+      },
+      "hero": "asymmetric-gradient-swatch",
+      "signatureMoves": [
+        "gold-line-divider",
+        "frost-crystallization-border",
+        "radial-glow-bg"
+      ],
+      "fonts": {
+        "heading": "DM Serif Display",
+        "body": "Work Sans"
+      },
+      "sectionOrder": [
+        "hero",
+        "gallery",
+        "services",
+        "testimonials",
+        "about-preview",
+        "cta"
+      ],
+      "animationPatterns": [
+        "blur-sharpen+parallax",
+        "scale-up+wave",
+        "slide-left+cascade",
+        "fade-up+fan",
+        "clip-reveal",
+        "none"
+      ],
+      "repo": "OnlineApprentice1/brushwork-painting",
+      "date": "2026-03-25",
+      "status": "built",
+      "theme": "brushwork",
+      "innerPageLayouts": {
+        "services": "timeline-journey",
+        "about": "story-image",
+        "contact": "map-hero-form-below"
+      }
+    }
+  ]
 }
