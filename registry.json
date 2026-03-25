@@ -270,6 +270,56 @@
         "about": "split-hero-values",
         "contact": "form-sidebar"
       }
+    },
+    {
+      "slug": "arctic-air-comfort",
+      "business": "Arctic Air Comfort",
+      "trade": "HVAC — Heating, Ventilation & Air Conditioning",
+      "location": "Sudbury, Ontario",
+      "archetype": "brass-instrument-precision-warm",
+      "palette": {
+        "primary": "oklch(48% 0.15 70)",
+        "secondary": "oklch(38% 0.07 70)",
+        "accent": "oklch(70% 0.12 235)",
+        "neutral": "oklch(9% 0.01 260)"
+      },
+      "hero": "gauge-dial-reveal",
+      "signatureMoves": [
+        "brass-ring-borders",
+        "instrument-panel-cards",
+        "grain-line-dividers"
+      ],
+      "fonts": {
+        "heading": "IBM Plex Sans",
+        "body": "Outfit"
+      },
+      "sectionOrder": [
+        "hero",
+        "pain-points",
+        "services",
+        "process",
+        "stats",
+        "testimonials",
+        "cta"
+      ],
+      "animationPatterns": [
+        "blur-sharpen+parallax",
+        "slide-alternate",
+        "fade-up+cascade",
+        "clip-reveal+cascade",
+        "scale-up+counter+fan",
+        "rotate-in+wave",
+        "none"
+      ],
+      "repo": "OnlineApprentice1/arctic-air-comfort",
+      "date": "2026-03-25",
+      "status": "built",
+      "theme": "arctic",
+      "innerPageLayouts": {
+        "services": "zigzag",
+        "about": "timeline-biography",
+        "contact": "multi-step-form"
+      }
     }
   ]
 }
