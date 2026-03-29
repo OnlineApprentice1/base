@@ -320,6 +320,54 @@
         "about": "timeline-biography",
         "contact": "multi-step-form"
       }
+    },
+    {
+      "slug": "crystaledge-exterior",
+      "business": "CrystalEdge Exterior Cleaning",
+      "trade": "Pressure Washing & Exterior Cleaning",
+      "location": "Peterborough, Ontario",
+      "archetype": "glacier-glass-clean-precision",
+      "palette": {
+        "primary": "oklch(55% 0.16 235)",
+        "secondary": "oklch(30% 0.04 240)",
+        "accent": "oklch(73% 0.13 185)",
+        "neutral": "oklch(96% 0.01 235)"
+      },
+      "hero": "glassmorphism-frosted-panel",
+      "signatureMoves": [
+        "prismatic-border-cards",
+        "mist-fade-sections",
+        "lens-flare-cta"
+      ],
+      "fonts": {
+        "heading": "Plus Jakarta Sans",
+        "body": "Inter Tight"
+      },
+      "sectionOrder": [
+        "hero",
+        "testimonials",
+        "services",
+        "stats",
+        "process",
+        "cta"
+      ],
+      "animationPatterns": [
+        "scale-up+parallax",
+        "rotate-in+cascade",
+        "slide-alternate",
+        "blur-sharpen+counter+pop",
+        "fade-up+wave",
+        "none"
+      ],
+      "repo": "OnlineApprentice1/crystaledge-exterior",
+      "date": "2026-03-28",
+      "status": "built",
+      "theme": "crystaledge",
+      "innerPageLayouts": {
+        "services": "category-tabs",
+        "about": "magazine",
+        "contact": "map-hero-form-below"
+      }
     }
   ]
 }
